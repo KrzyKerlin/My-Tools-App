@@ -1,1 +1,73 @@
-/* No CSS *//*# sourceMappingURL=style.css.map */
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  font-family: Lato,sans-serif;
+  line-height: 1.5;
+  background: #09cbfb;
+}
+
+.container {
+  text-align: center;
+  background: #ffffff;
+  max-width: 500px;
+  width: 100%;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #000;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.preview {
+  margin-bottom: 20px;
+}
+
+.gradient-text {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.controls {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.control-group label {
+  font-size: 1rem;
+  color: #555;
+  margin-right: 5px;
+}
+
+input[type="color"] {
+  border: none;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  background: none;
+  outline: none;
+}
+
+@media screen and (min-width: 768px) {
+  input[type="color"] {
+    width: 50px;
+    height: 50px;
+  }
+}
+/*# sourceMappingURL=style.css.map */
