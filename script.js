@@ -1,6 +1,7 @@
 const color1Input = document.getElementById('color1');
 const color2Input = document.getElementById('color2');
 const previewText = document.querySelector('.gradient-text');
+const cssCode = document.getElementById('cssCode');
 let direction = 'to right';
 
 function updateGradient() {
@@ -14,6 +15,9 @@ function updateGradient() {
     previewText.style.webkitTextFillColor = 'transparent';
     previewText.style.backgroundClip = 'text';
     previewText.style.color = 'transparent';
+
+    // Generate gradient css code
+    cssCode.textContent = `background: ${gradientCSS};\n-webkit-background-clip: text;\n-webkit-text-fill-color: transparent;\nbackground-clip: text;\ncolor: transparent;`;
 
 }
 

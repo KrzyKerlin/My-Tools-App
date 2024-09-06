@@ -64,6 +64,20 @@ body {
   outline: none;
 }
 
+.container .code {
+  background: #2d2d2d;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  color: #fafafa;
+}
+
+.container .code pre {
+  margin: 0;
+  font-family: monospace;
+  overflow-x: auto;
+}
+
 @media screen and (min-width: 768px) {
   input[type="color"] {
     width: 50px;
