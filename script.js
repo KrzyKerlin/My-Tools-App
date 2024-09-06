@@ -2,6 +2,7 @@ const color1Input = document.getElementById('color1');
 const color2Input = document.getElementById('color2');
 const previewText = document.querySelector('.gradient-text');
 const cssCode = document.getElementById('cssCode');
+const copyButton = document.getElementById('copyCode');
 let direction = 'to right';
 
 function updateGradient() {
@@ -21,6 +22,19 @@ function updateGradient() {
 
 }
 
+// Copy css code
+function copyToClipboard() {
+    const code = cssCode.textContent;
+    navigator.clipboard.writeText(code).then(() => {
+        copyButton.textContent = 'Coppied :)';
+        setTimeout(() => {
+            copyButton.innerHTML = '<i class="fas fa-copy"></i> Copy Code';
+        }, 2000);
+    }).catch(err => {
+        console.error('Error:', err);
+    });
+}
+
 // Event listeners
 color1Input.addEventListener('input', updateGradient);
 color2Input.addEventListener('input', updateGradient);
@@ -32,6 +46,8 @@ document.querySelectorAll('.direction-btn').forEach(button => {
         updateGradient();
     });
 });
+
+copyButton.addEventListener('click', copyToClipboard);
 
 updateGradient();
 
