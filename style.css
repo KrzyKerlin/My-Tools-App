@@ -28,16 +28,16 @@ body {
           box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.preview {
+.container .preview {
   margin-bottom: 20px;
 }
 
-.gradient-text {
+.container .preview .gradient-text {
   font-size: 2rem;
   font-weight: bold;
 }
 
-.controls {
+.container .controls {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -49,13 +49,13 @@ body {
   margin-bottom: 20px;
 }
 
-.control-group label {
+.container .controls .control-group label {
   font-size: 1rem;
   color: #555;
   margin-right: 5px;
 }
 
-input[type="color"] {
+.container .controls input[type="color"] {
   border: none;
   width: 30px;
   height: 30px;

@@ -19,37 +19,37 @@ body {
     border-radius: 8px;
     border: 1px solid #000;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
 
-.preview {
-    margin-bottom: 20px;
-}
+    .preview {
+        margin-bottom: 20px;
 
-.gradient-text {
-    font-size: 2rem;
-    font-weight: bold;
-}
+        .gradient-text {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+    }
 
-.controls {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-bottom: 20px;
-}
+    .controls {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin-bottom: 20px;
 
-.control-group label {
-    font-size: 1rem;
-    color: #555;
-    margin-right: 5px; 
-}
+        .control-group label {
+            font-size: 1rem;
+            color: #555;
+            margin-right: 5px; 
+        }
 
-input[type="color"] {
-    border: none;
-    width: 30px; 
-    height: 30px; 
-    cursor: pointer;
-    background: none;
-    outline: none;
+        input[type="color"] {
+            border: none;
+            width: 30px; 
+            height: 30px; 
+            cursor: pointer;
+            background: none;
+            outline: none;
+        }
+    }
 }
 
 @media screen and (min-width: 768px) {
