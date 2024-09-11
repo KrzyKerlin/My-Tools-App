@@ -17,6 +17,9 @@ function updateGradient() {
     previewText.style.backgroundClip = 'text';
     previewText.style.color = 'transparent';
 
+    // Update background gradient
+    document.body.style.background = gradientCSS;
+
     // Generate gradient css code
     cssCode.textContent = `background: ${gradientCSS};\n-webkit-background-clip: text;\n-webkit-text-fill-color: transparent;\nbackground-clip: text;\ncolor: transparent;`;
 
@@ -26,7 +29,7 @@ function updateGradient() {
 function copyToClipboard() {
     const code = cssCode.textContent;
     navigator.clipboard.writeText(code).then(() => {
-        copyButton.textContent = 'Coppied :)';
+        copyButton.textContent = 'Copied :)';
         setTimeout(() => {
             copyButton.innerHTML = '<i class="fas fa-copy"></i> Copy Code';
         }, 2000);

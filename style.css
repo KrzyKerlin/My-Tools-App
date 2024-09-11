@@ -10,9 +10,8 @@ body {
           align-items: center;
   min-height: 100vh;
   margin: 0;
-  font-family: Lato,sans-serif;
+  font-family: Lato, sans-serif;
   line-height: 1.5;
-  background: #09cbfb;
 }
 
 .container {
@@ -33,7 +32,7 @@ body {
 }
 
 .container .preview .gradient-text {
-  font-size: 2rem;
+  font-size: 3rem;
   font-weight: bold;
 }
 
@@ -57,11 +56,48 @@ body {
 
 .container .controls input[type="color"] {
   border: none;
-  width: 30px;
-  height: 30px;
+  width: 5rem;
+  height: 5rem;
   cursor: pointer;
   background: none;
   outline: none;
+}
+
+.container .controls .directions {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[4];
+      grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.container .controls .directions .direction-btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 15px 5px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  background: #fafafa;
+  cursor: pointer;
+  -webkit-transition: border-color 0.5s, color 0.5s;
+  transition: border-color 0.5s, color 0.5s;
+  font-size: 1.5rem;
+}
+
+.container .controls .directions .direction-btn i {
+  margin-right: 5px;
+}
+
+.container .controls .directions .direction-btn:hover {
+  border: 2px solid #0000ff;
+  color: #0000ff;
 }
 
 .container .code {
@@ -93,12 +129,5 @@ body {
 
 .container .code button#copyCode:hover {
   background: #09cbfb;
-}
-
-@media screen and (min-width: 768px) {
-  input[type="color"] {
-    width: 50px;
-    height: 50px;
-  }
 }
 /*# sourceMappingURL=style.css.map */
