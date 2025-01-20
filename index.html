@@ -2,59 +2,26 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gradient Generator</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Tools App</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <h1>My Tools App</h1>
     <div class="container">
-        <div class="preview">
-            <p class="gradient-text">GRADIENT TEXT</p>
+        <div class="tool-box">
+            <h3>GRADIENT Generator</h3>
+            <a href="gradientGenerator/index.html">
+                <button>Go</button>
+            </a>
         </div>
-        <div class="controls">
-            <div class="control-group">
-                <label for="color1">1:</label>
-                <input type="color" id="color1" name="color1" value="#0000ff">
-                <label for="color2">2:</label>
-                <input type="color" id="color2" name="color2" value="#09cbfb">
-            </div>
-            <div class="control-group directions">
-                <button class="direction-btn" data-direction="to right">
-                    &#8594;
-                </button>
-                <button class="direction-btn" data-direction="to left">
-                    &#8592;
-                </button>
-                <button class="direction-btn" data-direction="to bottom">
-                    &#8595;
-                </button>
-                <button class="direction-btn" data-direction="to top">
-                    &#8593;
-                </button>
-                <button class="direction-btn" data-direction="to bottom right">
-                    &#8600;
-                </button>
-                <button class="direction-btn" data-direction="to bottom left">
-                    &#8601;
-                </button>
-                <button class="direction-btn" data-direction="to top right">
-                    &#8599;
-                </button>
-                <button class="direction-btn" data-direction="to top left">
-                    &#8598;
-                </button>
-            </div>
-        </div>
-        <div class="code">
-            <pre id="cssCode"></pre>
-            <button id="copyCode"><i class="fas fa-copy"></i> Copy Code </button>
+        <div class="tool-box">
+            <h3>Tool 2</h3>
+            <button>Go</button>
         </div>
     </div>
-
-    <script src="script.js"></script>
 </body>
 
 </html>

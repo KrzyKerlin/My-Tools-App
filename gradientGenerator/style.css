@@ -1,0 +1,97 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  font-family: Lato, sans-serif;
+  line-height: 1.5;
+}
+
+.container {
+  text-align: center;
+  background: #ffffff;
+  max-width: 500px;
+  width: 100%;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #000;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.container .preview {
+  margin-bottom: 20px;
+}
+.container .preview .gradient-text {
+  font-size: 3rem;
+  font-weight: bold;
+}
+.container .controls {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+.container .controls .control-group label {
+  font-size: 1rem;
+  color: #555;
+  margin-right: 5px;
+}
+.container .controls input[type=color] {
+  border: none;
+  width: 5rem;
+  height: 5rem;
+  cursor: pointer;
+  background: none;
+  outline: none;
+}
+.container .controls .directions {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+.container .controls .directions .direction-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 5px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  background: #fafafa;
+  cursor: pointer;
+  transition: border-color 0.5s, color 0.5s;
+  font-size: 1.5rem;
+}
+.container .controls .directions .direction-btn i {
+  margin-right: 5px;
+}
+.container .controls .directions .direction-btn:hover {
+  border: 2px solid #0000ff;
+  color: #0000ff;
+}
+.container .code {
+  background: #2d2d2d;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  color: #fafafa;
+}
+.container .code pre {
+  margin: 0;
+  font-family: monospace;
+  overflow-x: auto;
+}
+.container .code button#copyCode {
+  margin-top: 10px;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  background: #0000ff;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s;
+  font-size: 1rem;
+}
+.container .code button#copyCode:hover {
+  background: #09cbfb;
+}/*# sourceMappingURL=style.css.map */
