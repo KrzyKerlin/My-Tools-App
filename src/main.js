@@ -1,5 +1,6 @@
 import { createApp } from 'vue';
 import App from './App.vue';
+import "./assets/style.css"
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from './views/Home.vue';
 
