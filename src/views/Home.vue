@@ -5,9 +5,9 @@
             <div class="tools">
                 <div class="tool-box">
                     <h3>GRADIENT Generator</h3>
-                    <a href="gradientGenerator/index.html">
+                    <router-link to="/GradientGenerator">
                         <button class="btn">Go</button>
-                    </a>
+                    </router-link>
                 </div>
                 <div class="tool-box">
                     <h3>Tool 2</h3>
@@ -29,3 +29,8 @@
         </div>
     </div>
 </template>
+
+
+<style scoped>
+@import '/src/assets/style.css';
+</style>
