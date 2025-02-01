@@ -6,6 +6,7 @@ export function useGradientLogic() {
   const color2 = ref('#09cbfb'); 
   const direction = ref('to right'); 
   const cssCode = ref('');  
+  const gradientContainer = ref(null); 
 
   const directions = [
     { value: 'to right', icon: '→' },
@@ -22,7 +23,9 @@ export function useGradientLogic() {
   const updateGradient = () => {
     const gradientCSS = `linear-gradient(${direction.value}, ${color1.value}, ${color2.value})`;
 
-    document.body.style.background = gradientCSS;
+    if (gradientContainer.value) {
+      gradientContainer.value.style.background = gradientCSS;
+    }
 
     const gradientText = document.querySelector('.gradient-text');
     if (gradientText) {
@@ -46,10 +49,12 @@ export function useGradientLogic() {
   // Clearing styles when leaving a component
   onMounted(updateGradient);
   onUnmounted(() => {
-      document.body.style.background = ''; 
+    if (gradientContainer.value) {
+      gradientContainer.value.style.background = '';
+    }
   });
 
-  // Track changes in color values ​​and direction
+  // Track changes in color values and direction
   watch([color1, color2, direction], updateGradient, { immediate: true });
 
   // Set a new gradient direction
@@ -76,6 +81,7 @@ export function useGradientLogic() {
     direction,
     cssCode,
     directions,
+    gradientContainer, 
     setDirection,
     copyToClipboard,
   };

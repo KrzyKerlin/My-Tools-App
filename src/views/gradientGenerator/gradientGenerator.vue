@@ -1,5 +1,5 @@
 <template>
-  <div class="gradient-container">
+  <div class="gradient-container" ref="gradientContainer">
     <div class="preview">
       <!-- Tekst z gradientem -->
       <p class="gradient-text">GRADIENT TEXT</p>
