@@ -1,57 +1,82 @@
-const color1Input = document.getElementById('color1');
-const color2Input = document.getElementById('color2');
-const previewText = document.querySelector('.gradient-text');
-const cssCode = document.getElementById('cssCode');
-const copyButton = document.getElementById('copyCode');
-let direction = 'to right';
+import { ref, watch, onMounted, onUnmounted } from 'vue';
 
-function updateGradient() {
-    const color1 = color1Input.value;
-    const color2 = color2Input.value;
-    const gradientCSS = `linear-gradient(${direction}, ${color1}, ${color2})`;
+// Main gradient logic
+export function useGradientLogic() {
+  const color1 = ref('#0000ff'); 
+  const color2 = ref('#09cbfb'); 
+  const direction = ref('to right'); 
+  const cssCode = ref('');  
 
-    // Update gradient preview text
-    previewText.style.background = gradientCSS;
-    previewText.style.webkitBackgroundClip = 'text';
-    previewText.style.webkitTextFillColor = 'transparent';
-    previewText.style.backgroundClip = 'text';
-    previewText.style.color = 'transparent';
+  const directions = [
+    { value: 'to right', icon: '→' },
+    { value: 'to left', icon: '←' },
+    { value: 'to bottom', icon: '↓' },
+    { value: 'to top', icon: '↑' },
+    { value: 'to bottom right', icon: '↘' },
+    { value: 'to bottom left', icon: '↙' },
+    { value: 'to top right', icon: '↗' },
+    { value: 'to top left', icon: '↖' },
+  ];
 
-    // Update background gradient
+  // Update the gradient
+  const updateGradient = () => {
+    const gradientCSS = `linear-gradient(${direction.value}, ${color1.value}, ${color2.value})`;
+
     document.body.style.background = gradientCSS;
 
-    // Generate gradient css code
-    cssCode.textContent = `background: ${gradientCSS};\n-webkit-background-clip: text;\n-webkit-text-fill-color: transparent;\nbackground-clip: text;\ncolor: transparent;`;
+    const gradientText = document.querySelector('.gradient-text');
+    if (gradientText) {
+      gradientText.style.background = gradientCSS;
+      gradientText.style.webkitBackgroundClip = 'text';
+      gradientText.style.webkitTextFillColor = 'transparent';
+      gradientText.style.backgroundClip = 'text';
+      gradientText.style.color = 'transparent';
+    }
 
-}
+    // copy CSS code
+    cssCode.value = `
+      background: ${gradientCSS};
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+      `;
+  };
 
-// Copy css code
-function copyToClipboard() {
-    const code = cssCode.textContent;
-    navigator.clipboard.writeText(code).then(() => {
-        copyButton.textContent = 'Copied :)';
+  // Clearing styles when leaving a component
+  onMounted(updateGradient);
+  onUnmounted(() => {
+      document.body.style.background = ''; 
+  });
+
+  // Track changes in color values ​​and direction
+  watch([color1, color2, direction], updateGradient, { immediate: true });
+
+  // Set a new gradient direction
+  const setDirection = (dir) => {
+    direction.value = dir;
+  };
+
+  // Copying CSS code
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(cssCode.value).then(() => {
+      const button = document.getElementById('copyCode');
+      if (button) {
+        button.textContent = 'Copied :)';
         setTimeout(() => {
-            copyButton.innerHTML = '<i class="fas fa-copy"></i> Copy Code';
+          button.innerHTML = '<i class="fas fa-copy"></i> Copy Code';
         }, 2000);
-    }).catch(err => {
-        console.error('Error:', err);
+      }
     });
+  };
+
+  return {
+    color1,
+    color2,
+    direction,
+    cssCode,
+    directions,
+    setDirection,
+    copyToClipboard,
+  };
 }
-
-// Event listeners
-color1Input.addEventListener('input', updateGradient);
-color2Input.addEventListener('input', updateGradient);
-
-// Gradient direction
-document.querySelectorAll('.direction-btn').forEach(button => {
-    button.addEventListener('click', () => {
-        direction = button.getAttribute('data-direction');
-        updateGradient();
-    });
-});
-
-copyButton.addEventListener('click', copyToClipboard);
-
-updateGradient();
-
-

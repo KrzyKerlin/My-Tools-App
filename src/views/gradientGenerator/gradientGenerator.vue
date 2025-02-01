@@ -33,8 +33,26 @@
   </div>
 </template>
 
-  
-<script src="./script.js"></script>
+<script>
+import { useGradientLogic } from './script.js';
+
+export default {
+  setup() {
+    const { color1, color2, direction, cssCode, directions, setDirection, copyToClipboard } = useGradientLogic();
+
+
+    return {
+      color1,
+      color2,
+      direction,
+      cssCode,
+      directions,
+      setDirection,
+      copyToClipboard,
+    };
+  },
+};
+</script>
   
 <style scoped>
   @import "./style.css"
