@@ -4,6 +4,7 @@
             <h1>My Tools App</h1>
             <div class="tools">
                 <div class="tool-box">
+                    <v-icon>mdi-gradient-horizontal</v-icon> 
                     <h3>GRADIENT Generator</h3>
                     <router-link to="/GradientGenerator">
                         <button class="btn">Go</button>
