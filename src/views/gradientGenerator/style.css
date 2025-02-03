@@ -4,11 +4,11 @@ body {
   align-items: center;
   min-height: 100vh;
   margin: 0;
-  font-family: Lato, sans-serif;
   line-height: 1.5;
 }
 
 .gradient-container {
+  position: relative;
   text-align: center;
   background: #ffffff;
   max-width: 500px;
@@ -23,7 +23,7 @@ body {
   margin-bottom: 20px;
 }
 .gradient-container .preview .gradient-text {
-  font-size: 3rem;
+  font-size: 4rem;
   font-weight: bold;
 }
 .gradient-container .controls {
@@ -73,16 +73,21 @@ body {
   background: #2d2d2d;
   padding: 10px;
   border-radius: 5px;
-  text-align: center;
   color: #fafafa;
+  min-height: 150px;
+  overflow: hidden;
 }
 .gradient-container .gradient-code pre {
   margin: 0;
   font-family: monospace;
-  overflow-x: auto;
+  word-wrap: break-word;
+  white-space: normal;
 }
 .gradient-container .gradient-code button#copyCode {
-  margin-top: 10px;
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
   padding: 8px 15px;
   border: none;
   border-radius: 5px;
@@ -91,6 +96,7 @@ body {
   cursor: pointer;
   transition: background 0.3s;
   font-size: 1rem;
+  font-family: inherit;
 }
 .gradient-container .gradient-code button#copyCode:hover {
   background: #09cbfb;
