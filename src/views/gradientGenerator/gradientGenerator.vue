@@ -1,8 +1,8 @@
 <template>
-  <div class="gradient-container" ref="gradientContainer">
+  <div class="gradient-container">
     <div class="preview">
       <!-- Tekst z gradientem -->
-      <p class="gradient-text">GRADIENT TEXT</p>
+      <p ref="gradientText" class="gradient-text">GRADIENT TEXT</p>
     </div>
     <div class="controls">
       <div class="control-group">
@@ -38,18 +38,8 @@ import { useGradientLogic } from './script.js';
 
 export default {
   setup() {
-    const { color1, color2, direction, cssCode, directions, setDirection, copyToClipboard } = useGradientLogic();
-
-
-    return {
-      color1,
-      color2,
-      direction,
-      cssCode,
-      directions,
-      setDirection,
-      copyToClipboard,
-    };
+    const { color1, color2, gradientText, direction, directions, setDirection, cssCode, copyToClipboard } = useGradientLogic();
+    return { color1, color2, gradientText, direction, directions, setDirection, cssCode, copyToClipboard };
   },
 };
 </script>

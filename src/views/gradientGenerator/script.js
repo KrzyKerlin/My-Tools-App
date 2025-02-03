@@ -2,11 +2,11 @@ import { ref, watch, onMounted, onUnmounted } from 'vue';
 
 // Main gradient logic
 export function useGradientLogic() {
-  const color1 = ref('#0000ff'); 
-  const color2 = ref('#09cbfb'); 
-  const direction = ref('to right'); 
-  const cssCode = ref('');  
-  const gradientContainer = ref(null); 
+  const color1 = ref('#0000ff');
+  const color2 = ref('#09cbfb');
+  const direction = ref('to right');
+  const cssCode = ref('');
+  const gradientText = ref(null);
 
   const directions = [
     { value: 'to right', icon: '→' },
@@ -23,35 +23,34 @@ export function useGradientLogic() {
   const updateGradient = () => {
     const gradientCSS = `linear-gradient(${direction.value}, ${color1.value}, ${color2.value})`;
 
-    if (gradientContainer.value) {
-      gradientContainer.value.style.background = gradientCSS;
+    // Apply the gradient to the entire background (only within this component)
+    document.body.style.background = gradientCSS;
+
+    // Apply gradient effect to the text
+    if (gradientText.value) {
+      gradientText.value.style.background = gradientCSS;
+      gradientText.value.style.webkitBackgroundClip = 'text';
+      gradientText.value.style.webkitTextFillColor = 'transparent';
+      gradientText.value.style.backgroundClip = 'text';
+      gradientText.value.style.color = 'transparent';
     }
 
-    const gradientText = document.querySelector('.gradient-text');
-    if (gradientText) {
-      gradientText.style.background = gradientCSS;
-      gradientText.style.webkitBackgroundClip = 'text';
-      gradientText.style.webkitTextFillColor = 'transparent';
-      gradientText.style.backgroundClip = 'text';
-      gradientText.style.color = 'transparent';
-    }
-
-    // copy CSS code
+    // Generate CSS code
     cssCode.value = `
       background: ${gradientCSS};
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       color: transparent;
-      `;
+    `;
   };
 
-  // Clearing styles when leaving a component
+  // Set the gradient when the component initializes
   onMounted(updateGradient);
+
+  // Reset the background when the component is removed
   onUnmounted(() => {
-    if (gradientContainer.value) {
-      gradientContainer.value.style.background = '';
-    }
+    document.body.style.background = ''
   });
 
   // Track changes in color values and direction
@@ -78,11 +77,11 @@ export function useGradientLogic() {
   return {
     color1,
     color2,
+    gradientText,
     direction,
-    cssCode,
     directions,
-    gradientContainer, 
     setDirection,
+    cssCode,
     copyToClipboard,
   };
 }
