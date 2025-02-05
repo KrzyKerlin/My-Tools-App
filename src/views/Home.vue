@@ -9,8 +9,9 @@
                     <v-btn :to="'/GradientGenerator'" class="btn" size="large" variant="elevated">Go</v-btn>
                 </div>
                 <div class="tool-box">
-                    <h3>Tool 2</h3>
-                    <button class="btn">Go</button>
+                    <v-icon start size="40">mdi-palette</v-icon>
+                    <h3>Color PALETTE</h3>
+                    <v-btn :to="'/ColorPalette'" class="btn" size="large" variant="elevated">Go</v-btn>
                 </div>
             </div>
         </div>

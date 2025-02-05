@@ -4,10 +4,12 @@ import { createRouter, createWebHistory } from 'vue-router';
 import vuetify from './plugins/vuetify';
 import Home from './views/Home.vue';
 import GradientGenerator from './views/gradientGenerator/gradientGenerator.vue';
+import ColorPalette from './views/colorPalette.vue';
 
 const routes = [
      { path: "/", component: Home},
-     { path: "/gradientGenerator", component: GradientGenerator}
+     { path: "/gradientGenerator", component: GradientGenerator},
+     { path: "/colorPalette", component: ColorPalette}
 ];
 
 const router = createRouter({
