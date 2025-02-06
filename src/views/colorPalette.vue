@@ -1,90 +1,83 @@
 <template>
-    <div class="palette-container">
-      <h1 class="mb-4">Color Palette Generator</h1>
+    <v-container class="d-flex flex-column align-center">
+      <h1 class="mb-4 text-center text-primary">Color Palette Generator</h1>
   
-      <v-btn @click="generatePalette" color="primary" size="x-large" class="mb-6">
-        Generate Palette
+      <v-btn @click="generatePalettes" color="primary" size="large" class="btn">
+        Generate 
       </v-btn>
   
-      <div id="result">
-        <div v-if="palette.length" class="palette">
-          <div 
-            v-for="(color, i) in palette" 
-            :key="i" 
-            class="color-box" 
-            :style="{ backgroundColor: color }">
-            {{ color }}
-          </div>
-        </div>
+      <div id="results" class="d-flex flex-wrap justify-center mt-10">
+        <v-row justify="center">
+          <v-col 
+          v-for="(palette, index) in palettes" 
+          :key="index">
+            <v-sheet class="palette d-flex justify-center pa-2 rounded-lg">
+              <v-sheet
+                v-for="(color, i) in palette"
+                :key="i" 
+                width="100" 
+                height="120" 
+                class="color-box d-flex align-center justify-center text-white text-bold rounded-lg mb-6"
+                :style="{backgroundColor: color, border: '2px solid black', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',}"
+                >{{ color }}
+              </v-sheet>
+            </v-sheet>
+          </v-col>
+        </v-row>
       </div>
-    </div>
-  </template>
+      
+    </v-container>
+</template>
   
-  <script>
+<script>
   import { ref } from 'vue';
+  import { onMounted } from 'vue';
+  import { onUnmounted } from 'vue';
   
   export default {
     name: 'ColorPalette',
     setup() {
-      const palette = ref([]);
+      const palettes = ref([]);
   
       // Generates a random hex color
       const getRandomColor = () => {
         return `#${Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0')}`;
       };
   
-      // Generates a single palette with 5 colors
-      const generatePalette = () => {
-        palette.value = []; // Clear previous palette
-  
-        for (let i = 0; i < 5; i++) {
-          palette.value.push(getRandomColor());
+      // Generates 50 palettes with 5 colors
+      const generatePalettes = () => {
+      palettes.value = [];
+
+      for (let i = 0; i < 50; i++) {
+        const palette = [];
+        for (let j = 0; j < 5; j++) {
+          palette.push(getRandomColor());
         }
-      };
+        palettes.value.push(palette);
+      }
+    };
+
+      // Set the background on component mount
+      onMounted(() => {
+        document.body.style.background = 'linear-gradient(to right, #f5feff, #94d5e6)';
+      });
+
+      // Reset the background when the component is removed
+      onUnmounted(() => {
+        document.body.style.background = ''
+      });
   
       return {
-        palette,
-        generatePalette
+        palettes,
+        generatePalettes
       };
     }
   };
-  </script>
+</script>
   
-  <style scoped>
-  .palette-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    width: 100%;
-  }
-  
-  #result {
-    margin-top: 20px;
-    width: 100%;
-    text-align: center;
-  }
-  
-  .palette {
-    display: flex;
-    justify-content: center;
-    gap: 5px;
-    margin-top: 10px;
-  }
-  
-  .color-box {
-    width: 100px;
-    height: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-weight: bold;
-    border: 2px solid black;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-  }
-  </style>
+<style scoped>
+.v-sheet {
+  background: transparent;
+}
+</style>
   
