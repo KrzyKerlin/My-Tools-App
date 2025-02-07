@@ -1,0 +1,25 @@
+
+  [
+    {
+      "family": "ABeeZee",
+      "variants": ["regular", "italic"],
+      "category": "sans-serif"
+    },
+    {
+      "family": "Abel",
+      "variants": ["regular"],
+      "category": "serif"
+    },
+    {
+      "family": "Abril Fatface",
+      "variants": ["regular"],
+      "category": "serif"
+    },
+    {
+      "family": "Aclonica",
+      "variants": ["regular"],
+      "category": "sans-serif"
+    }
+  ]
+  
+  
