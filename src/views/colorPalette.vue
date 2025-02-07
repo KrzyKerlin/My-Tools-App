@@ -17,7 +17,7 @@
                 :key="i" 
                 width="100" 
                 height="120" 
-                class="color-box d-flex align-center justify-center text-white text-bold rounded-lg mb-6"
+                class="d-flex align-center justify-center text-white text-bold rounded-lg mb-6"
                 :style="{backgroundColor: color, border: '2px solid black', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',}"
                 >{{ color }}
               </v-sheet>
