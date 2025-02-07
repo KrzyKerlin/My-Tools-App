@@ -30,9 +30,7 @@
 </template>
   
 <script>
-  import { ref } from 'vue';
-  import { onMounted } from 'vue';
-  import { onUnmounted } from 'vue';
+  import { ref, onMounted, onUnmounted } from "vue";
   
   export default {
     name: 'ColorPalette',

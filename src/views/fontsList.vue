@@ -1,77 +1,129 @@
 <template>
-  <v-container>
+  <v-container class="d-flex flex-column align-center">
+    <h1 class="mb-8 text-center text-primary">Font <span class="second">Picker</span><span class="third"> App</span></h1>
 
-    <v-row class="mb-4" justify="center">
-      <v-col cols="12" md="8">
-        <v-text-field
+    <div class="input-container align-center">
+      <v-text-field
           v-model="userText"
-          label="Type your text"
+          label="Enter your text here..."
           outlined
           dense
-        ></v-text-field>
-      </v-col>
-    </v-row>
+          class="text-input"
+          color="primary"
+          append-icon="mdi-pencil" 
+        />
+      <v-btn @click="loadFonts" color="primary" class="mb-8">Show</v-btn>
+    </div>
 
-    <v-row>
+    <!-- Fonts container -->
+    <v-row class="fonts-container" v-if="fonts.length > 0" justify="center">
       <v-col
         v-for="font in fonts"
         :key="font.family"
-        cols="12"
-        sm="4"
-        lg="3"
-        class="d-flex justify-center mb-4"
+        cols="12" sm="6" md="3"
+        class="font-item"
       >
-        <v-card
-          :style="{ fontFamily: font.family, fontSize: '3em', textAlign: 'center', width: '200px' }"
-          class="font-preview"
-        >
-          <v-card-text>
-            {{ userText }}
-          </v-card-text>
+        <v-card :style="{ fontFamily: font.family}" @click="selectFont(font)">
+          <v-card-text>{{ userText || 'Sample Text' }}</v-card-text>
         </v-card>
       </v-col>
     </v-row>
+
+    <!-- Selected font -->
+    <div v-if="selectedFont" class="mt-4">
+      <p>Selected Font: <strong>{{ selectedFont }}</strong></p>
+    </div>
   </v-container>
 </template>
 
 <script>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, onUnmounted } from "vue";
 
 export default {
-  name: 'GoogleFontsTool',
+  name: "FontPicker",
   setup() {
+    const userText = ref("");
     const fonts = ref([]);
-    const userText = ref('Example Text');
+    const selectedFont = ref("");
 
-    // Pobranie czcionek z pliku JSON
-    onMounted(async () => {
+    // Load Json fonts 
+    const loadFonts = async () => {
       try {
-        const response = await fetch('/fonts.json'); // Pobranie pliku JSON z public/fonts.json
-        fonts.value = await response.json();
+        const response = await fetch("/fonts.json");
+        const fontsData = await response.json();
 
-        // Dynamiczne ładowanie czcionek do <head>
-        fonts.value.forEach(font => loadFont(font.family));
+        fonts.value = fontsData;
+
+        // Dynamically load fonts into <head>
+        fontsData.forEach(font => loadFont(font.family));
       } catch (error) {
-        console.error('Error loading fonts:', error);
+        console.error("Error loading fonts:", error);
       }
-    });
+    };
 
-    // Funkcja do dodawania linku do czcionek Google Fonts
+    // Function to load a font from Google Fonts into <head>
     const loadFont = (fontFamily) => {
       const link = document.createElement('link');
-      link.href = `https://fonts.googleapis.com/css?family=${fontFamily.replace(/ /g, '+')}&display=swap`;
+      link.href = `https://fonts.googleapis.com/css2?family=${fontFamily.replace(/ /g, '+')}&display=swap`;
       link.rel = 'stylesheet';
       document.head.appendChild(link);
     };
 
-    return {
-      fonts,
-      userText
+    const selectFont = (font) => {
+      selectedFont.value = font.family;
     };
-  }
+
+    // Set the background on component mount
+    onMounted(() => {
+        document.body.style.background = 'linear-gradient(to bottom, #8f0062, #b11adb)';
+    });
+
+    // Reset the background when the component is removed
+    onUnmounted(() => {
+        document.body.style.background = ''
+    });
+
+    return {
+      userText,
+      fonts,
+      selectedFont,
+      loadFonts,
+      selectFont,
+    };
+  },
 };
 </script>
 
 <style scoped>
+h1 span {
+  display: inline-block;
+}
+
+h1 span.second {
+  font-family: 'Pacifico', cursive;
+}
+
+h1 span.third {
+  font-family: 'Luckiest Guy', cursive;
+}
+
+.input-container {
+  text-align: center;
+}
+
+.v-text-field {
+  width: 350px;
+  color: black; 
+  font-size: 1.8rem;
+}
+
+.font-item .v-card {
+  width: 250px;
+}
+
+.v-card-text {
+  font-size: clamp(1.5rem, 2vw, 3rem);
+  text-align: center;
+}
 
 </style>
