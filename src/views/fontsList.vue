@@ -21,10 +21,12 @@
         v-for="font in fonts"
         :key="font.family"
         cols="12" sm="6" md="3"
-        class="font-item"
+        class="font-item d-flex flex-column align-center justify-center"
       >
-        <v-card :style="{ fontFamily: font.family}" @click="selectFont(font)">
-          <v-card-text>{{ userText || 'Sample Text' }}</v-card-text>
+        <v-card :style="{ fontFamily: font.family}" @click="selectFont(font)" 
+          class="d-flex flex-column align-center justify-center">
+          <v-card-text class="text-center d-flex align-center justify-center text-box">{{ userText || 'Sample Text' }}
+          </v-card-text>
         </v-card>
       </v-col>
     </v-row>
@@ -119,11 +121,11 @@ h1 span.third {
 
 .font-item .v-card {
   width: 250px;
+  height: 125px;
 }
 
 .v-card-text {
   font-size: clamp(1.5rem, 2vw, 3rem);
-  text-align: center;
 }
 
 </style>
