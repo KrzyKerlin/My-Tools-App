@@ -18,6 +18,11 @@
                     <h3>FONTS List</h3>
                     <v-btn :to='"/FontsList"' class="btn" size="large" variant="elevated">Go</v-btn>
                 </div>
+                <div class="tool-box">
+                    <v-icon start size="40">mdi-image</v-icon>
+                    <h3>WEBP Converter</h3>
+                    <v-btn :to='"/WebpConverter"' class="btn" size="large" variant="elevated">Go</v-btn>
+                </div>
             </div>
         </div>
         <v-responsive class="bg-space">
