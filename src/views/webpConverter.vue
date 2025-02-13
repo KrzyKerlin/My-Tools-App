@@ -10,6 +10,11 @@
           Upload Image
         </v-btn>
       </v-card>
+
+      <v-btn v-if="imgLoaded" color="success" class="mt-3" @click="downloadImage">
+        Download WebP
+      </v-btn>
+
     </v-container>
 </template>
   
@@ -18,37 +23,41 @@ import { ref, onMounted, onUnmounted } from "vue";
 
 export default {
   setup() {
-    const fileInput = ref(null);
+    const imgLoaded = ref(false);
     const canvas = ref(null);
-    const imageLoaded = ref(false);
-    let img = new Image();
 
-    // Open file selection dialog
-    const triggerFileInput = () => {
-      fileInput.value.click();
-    };
-
-    // Load selected image and render it on canvas
+    // Load the image into canvas
     const loadImage = (event) => {
       const file = event.target.files[0];
-      if (!file) return;
-
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        img.onload = () => {
-          const ctx = canvas.value.getContext("2d");
-
-          // Set canvas size to match the image
-          canvas.value.width = img.width;
-          canvas.value.height = img.height;
-
-          // Draw image on canvas
-          ctx.drawImage(img, 0, 0);
-          imageLoaded.value = true;
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const img = new Image();
+          img.onload = () => {
+            imgLoaded.value = true;
+            const ctx = canvas.value.getContext("2d");
+            canvas.value.width = img.width;
+            canvas.value.height = img.height;
+            ctx.drawImage(img, 0, 0);
+          };
+          img.src = e.target.result;
         };
-        img.src = e.target.result;
-      };
-      reader.readAsDataURL(file);
+        reader.readAsDataURL(file);
+      }
+    };
+
+    // Trigger file input click
+    const triggerFileInput = () => {
+      document.getElementById("fileInput").click();
+    };
+
+
+    // Download canvas image as WebP
+    const downloadImage = () => {
+        const link = document.createElement("a");
+        link.href = canvas.value.toDataURL("image/webp");
+        link.download = "edited-photo-by-KrzychuK.webp";
+        link.click();
     };
 
     // Set the background on component mount
@@ -62,11 +71,11 @@ export default {
     });
 
     return {
-      fileInput,
       canvas,
-      imageLoaded,
+      imgLoaded,
       triggerFileInput,
       loadImage,
+      downloadImage,
     };
   },
 };
