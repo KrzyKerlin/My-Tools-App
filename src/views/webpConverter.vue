@@ -2,7 +2,7 @@
     <v-container class="d-flex flex-column align-center">
       <h1 class="mb-4 text-center text-indigo-darken-4">WebP Converter</h1>
   
-      <v-card class="d-flex justify-center align-center" elevation="2" height="60vh" max-width="90%" width="100%">
+      <v-card class="d-flex justify-center align-center" elevation="2" height="60vh" max-width="90%" width="100%" @click="resetImage">
         <input type="file" @change="loadImage" ref="fileInput" class="d-none" id="fileInput" />
         <canvas ref="canvas" class="w-100 h-100"></canvas>
   
@@ -51,6 +51,10 @@ export default {
       document.getElementById("fileInput").click();
     };
 
+    // Reset image on click
+    const resetImage = () => {
+      imgLoaded.value = false;
+    };
 
     // Download canvas image as WebP
     const downloadImage = () => {
@@ -76,6 +80,7 @@ export default {
       triggerFileInput,
       loadImage,
       downloadImage,
+      resetImage
     };
   },
 };
