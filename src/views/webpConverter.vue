@@ -53,7 +53,9 @@ export default {
 
     // Reset image on click
     const resetImage = () => {
-      imgLoaded.value = false;
+      const ctx = canvas.value.getContext("2d");
+      ctx.clearRect(0, 0, canvas.value.width, canvas.value.height);  // delete canva (img)
+      imgLoaded.value = false;  // show upload btn
     };
 
     // Download canvas image as WebP
